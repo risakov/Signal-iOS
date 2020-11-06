@@ -62,6 +62,11 @@ public extension UIColor {
     class var ows_signalBlueDark: UIColor {
         return UIColor(rgbHex: 0x1851B4)
     }
+    
+    @objc(ows_signalOrangeColor)
+    class var ows_signalOrange: UIColor {
+        return UIColor(rgbHex: 0xFF7900)
+    }
 
     // MARK: Accent Colors
 

@@ -7,3 +7,5 @@
 [submodule "ThirdParty/RingRTC"]
 	path = ThirdParty/RingRTC
 	url = https://github.com/signalapp/ringrtc
+[submodule "bar1"]
+	branch = master

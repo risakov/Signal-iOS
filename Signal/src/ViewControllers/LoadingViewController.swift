@@ -24,8 +24,9 @@ public class LoadingViewController: UIViewController {
         self.logoView = UIImageView(image: #imageLiteral(resourceName: "signal-logo-128-launch-screen"))
         view.addSubview(logoView)
 
+        logoView.autoSetDimensions(to: CGSize(width: 294, height: 204))
         logoView.autoCenterInSuperview()
-        logoView.autoSetDimensions(to: CGSize(square: 128))
+        logoView.centerOnSuperview()
 
         self.topLabel = buildLabel()
         topLabel.alpha = 0
@@ -74,6 +75,11 @@ public class LoadingViewController: UIViewController {
 
         let kBottomLabelThreshold: TimeInterval = 15
         topLabelTimer = Timer.weakScheduledTimer(withTimeInterval: kBottomLabelThreshold, target: self, selector: #selector(showBottomLabelAnimated), userInfo: nil, repeats: false)
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
 
     // UIStackView removes hidden subviews from the layout.
