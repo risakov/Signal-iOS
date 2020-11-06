@@ -73,7 +73,7 @@ private class ResearchModal: UIViewController {
         stackView.addArrangedSubview(.spacer(withHeight: 48))
 
         let takeTheSurveyButton = OWSFlatButton()
-        takeTheSurveyButton.setBackgroundColors(upColor: .ows_accentBlue)
+        takeTheSurveyButton.setBackgroundColors(upColor: .ows_signalOrange)
         takeTheSurveyButton.useDefaultCornerRadius()
         takeTheSurveyButton.setAttributedTitle(
             NSAttributedString.composed(of: [

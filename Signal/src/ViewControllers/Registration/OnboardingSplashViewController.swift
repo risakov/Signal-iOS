@@ -66,6 +66,7 @@ public class OnboardingSplashViewController: OnboardingBaseViewController {
 
         let continueButton = self.primaryButton(title: CommonStrings.continueButton,
                                                     selector: #selector(continuePressed))
+        continueButton.setBackgroundColors(upColor: .ows_signalOrange)
         continueButton.accessibilityIdentifier = "onboarding.splash." + "continueButton"
         let primaryButtonView = OnboardingBaseViewController.horizontallyWrap(primaryButton: continueButton)
 

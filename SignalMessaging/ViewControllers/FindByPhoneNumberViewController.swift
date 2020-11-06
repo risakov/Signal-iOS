@@ -128,7 +128,7 @@ public class FindByPhoneNumberViewController: OWSViewController {
         button.useDefaultCornerRadius()
         button.autoSetDimension(.height, toSize: buttonHeight)
         button.setTitle(title: buttonTitle, font: OWSFlatButton.fontForHeight(buttonHeight), titleColor: .white)
-        button.setBackgroundColors(upColor: .ows_accentBlue)
+        button.setBackgroundColors(upColor: .ows_signalOrange)
         button.addTarget(target: self, selector: #selector(tryToSelectPhoneNumber))
         button.setEnabled(false)
         button.accessibilityIdentifier =

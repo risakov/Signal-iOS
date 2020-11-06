@@ -302,7 +302,7 @@ private class RecentPhotosErrorView: UIView {
         stackView.addArrangedSubview(label)
 
         let button = OWSFlatButton()
-        button.setBackgroundColors(upColor: .ows_accentBlue)
+        button.setBackgroundColors(upColor: .ows_signalOrange)
         button.setTitle(title: CommonStrings.openSettingsButton, font: .ows_dynamicTypeBodyClamped, titleColor: .white)
         button.useDefaultCornerRadius()
         button.contentEdgeInsets = UIEdgeInsets(top: 3, leading: 8, bottom: 3, trailing: 8)

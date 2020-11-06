@@ -304,7 +304,7 @@ public class PinSetupViewController: OWSViewController {
         let font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         let buttonHeight = OWSFlatButton.heightForFont(font)
         nextButton.setTitle(title: CommonStrings.nextButton, font: font, titleColor: .white)
-        nextButton.setBackgroundColors(upColor: .ows_accentBlue)
+        nextButton.setBackgroundColors(upColor: .ows_signalOrange)
         nextButton.addTarget(target: self, selector: #selector(nextPressed))
         nextButton.autoSetDimension(.height, toSize: buttonHeight)
         nextButton.accessibilityIdentifier = "pinCreation.nextButton"
