@@ -49,8 +49,8 @@
     //                                                 ? UIKeyboardAppearanceDark
     //                                                 : UIKeyboardAppearanceDefault);
 
-    [[UISwitch appearance] setOnTintColor:UIColor.ows_accentBlueColor];
-    [[UIToolbar appearance] setTintColor:UIColor.ows_accentBlueColor];
+    [[UISwitch appearance] setOnTintColor:UIColor.ows_signalOrangeColor];
+    [[UIToolbar appearance] setTintColor:UIColor.ows_signalOrangeColor];
 
     // If we set NSShadowAttributeName, the NSForegroundColorAttributeName value is ignored.
     UINavigationBar.appearance.titleTextAttributes = @{ NSForegroundColorAttributeName : Theme.navbarTitleColor };

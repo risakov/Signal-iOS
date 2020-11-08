@@ -103,7 +103,7 @@ extension ConversationSettingsViewController {
             let text = String(format: format, learnMoreText)
             let attributedString = NSMutableAttributedString(string: text)
             attributedString.setAttributes([
-                .foregroundColor: Theme.accentBlueColor
+                .foregroundColor: Theme.accentOrangeColor
             ],
                                            forSubstring: learnMoreText)
             label.textColor = Theme.secondaryTextAndIconColor
@@ -341,7 +341,7 @@ class ExistingLegacyGroupView: UIView {
         let okayButton = OWSFlatButton.button(title: CommonStrings.okayButton,
                                               font: buttonFont,
                                               titleColor: .white,
-                                              backgroundColor: .ows_accentBlue,
+                                              backgroundColor: .ows_signalOrange,
                                               target: self,
                                               selector: #selector(dismissAlert))
         okayButton.autoSetDimension(.height, toSize: buttonHeight)

@@ -71,23 +71,6 @@ public extension UIColor {
     // MARK: Accent Colors
 
     /// Nav Bar, Primary Buttons
-    @objc(ows_accentBlueColor)
-    class var ows_accentBlue: UIColor {
-        // Ultramarine UI
-        return UIColor(rgbHex: 0x2C6BED)
-    }
-
-    @objc(ows_accentBlueDarkColor)
-    class var ows_accentBlueDark: UIColor {
-        // Ultramarine UI Light
-        return UIColor(rgbHex: 0x6191F3)
-    }
-
-    @objc(ows_accentBlueTintColor)
-    class var ows_accentBlueTint: UIColor {
-        return UIColor(rgbHex: 0xB0C8F9)
-    }
-
     /// Making calls, success states
     @objc(ows_accentGreenColor)
     class var ows_accentGreen: UIColor {

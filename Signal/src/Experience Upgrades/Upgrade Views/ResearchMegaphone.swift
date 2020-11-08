@@ -112,7 +112,7 @@ private class ResearchModal: UIViewController {
                 comment: "Button text for declining the research modal"
             ),
             font: UIFont.ows_dynamicTypeBody.ows_semibold,
-            titleColor: Theme.accentBlueColor
+            titleColor: .ows_signalOrange
         )
         noThanksButton.autoSetDimension(.height, toSize: OWSFlatButton.heightForFont(.ows_dynamicTypeBody))
         noThanksButton.setPressedBlock { [weak self] in

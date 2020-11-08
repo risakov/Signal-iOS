@@ -19,8 +19,7 @@ public class LoadingViewController: UIViewController {
 
     override public func loadView() {
         self.view = UIView()
-        view.backgroundColor = Theme.launchScreenBackground
-
+        self.view.backgroundColor = Theme.launchScreenBackground
         self.logoView = UIImageView(image: #imageLiteral(resourceName: "signal-logo-128-launch-screen"))
         view.addSubview(logoView)
 

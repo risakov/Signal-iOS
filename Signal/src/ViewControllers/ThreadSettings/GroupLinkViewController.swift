@@ -109,19 +109,19 @@ public class GroupLinkViewController: OWSTableViewController {
 
             if groupModelV2.isGroupInviteLinkEnabled {
                 section.add(OWSTableItem.actionItem(icon: ThemeIcon.messageActionShare,
-                                                    tintColor: Theme.accentBlueColor,
+                                                    tintColor: .ows_signalOrange,
                                                     name: NSLocalizedString("GROUP_LINK_VIEW_SHARE_LINK",
                                                                                 comment: "Label for the 'share link' button in the 'group link' view."),
-                                                    textColor: Theme.accentBlueColor,
+                                                    textColor: .ows_signalOrange,
                                                     accessibilityIdentifier: "group_link_view_share_link",
                                                     actionBlock: { [weak self] in
                                                         self?.shareLinkPressed()
                 }))
                 section.add(OWSTableItem.actionItem(icon: ThemeIcon.retry24,
-                                                    tintColor: Theme.accentBlueColor,
+                                                    tintColor: .ows_signalOrange,
                                                     name: NSLocalizedString("GROUP_LINK_VIEW_RESET_LINK",
                                                                             comment: "Label for the 'reset link' button in the 'group link' view."),
-                                                    textColor: Theme.accentBlueColor,
+                                                    textColor: .ows_signalOrange,
                                                     accessibilityIdentifier: "group_link_view_reset_link",
                                                     actionBlock: { [weak self] in
                                                         self?.resetLinkPressed()

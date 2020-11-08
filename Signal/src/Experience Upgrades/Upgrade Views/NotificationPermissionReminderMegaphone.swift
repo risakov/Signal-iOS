@@ -150,7 +150,7 @@ class TurnOnPermissionView: UIStackView {
         let button = OWSFlatButton.button(title: title,
                                           font: font,
                                           titleColor: .white,
-                                          backgroundColor: .ows_accentBlue,
+                                          backgroundColor: .ows_signalOrange,
                                           target: self,
                                           selector: selector)
         button.autoSetDimension(.height, toSize: buttonHeight)

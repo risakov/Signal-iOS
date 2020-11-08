@@ -591,7 +591,7 @@ typedef struct {
     UILabel *label = [UILabel new];
     label.text
         = NSLocalizedString(@"GROUP_LINK_INVITE_LINK_IS_EXPIRED", @"Indicator that a group invite link has expired.");
-    label.textColor = (self.isIncoming ? UIColor.ows_accentBlueColor : ConversationStyle.bubbleTextColorOutgoing);
+    label.textColor = (self.isIncoming ? UIColor.ows_signalOrangeColor : ConversationStyle.bubbleTextColorOutgoing);
     label.font = self.joinGroupButtonFont;
     label.textAlignment = NSTextAlignmentCenter;
     [label autoSetDimension:ALDimensionHeight toSize:self.joinGroupButtonHeight];
@@ -605,7 +605,7 @@ typedef struct {
     [self insertGroupInviteLinkHairline:textViews];
 
     UIColor *buttonTextColor
-        = (self.isIncoming ? UIColor.ows_accentBlueColor : ConversationStyle.bubbleTextColorOutgoing);
+        = (self.isIncoming ? UIColor.ows_signalOrangeColor : ConversationStyle.bubbleTextColorOutgoing);
     OWSFlatButton *joinGroupButton = [OWSFlatButton
         buttonWithTitle:NSLocalizedString(@"GROUP_LINK_JOIN_GROUP_BUTTON", @"Button to join a group from a group link.")
                    font:self.joinGroupButtonFont

@@ -63,7 +63,7 @@ public class FindByPhoneNumberViewController: OWSViewController {
         countryRowTitleLabel.autoPinLeadingToSuperviewMargin()
         countryRowTitleLabel.autoPinHeightToSuperviewMargins()
 
-        countryCodeLabel.textColor = Theme.accentBlueColor
+        countryCodeLabel.textColor = .ows_signalOrange
         countryCodeLabel.font = UIFont.ows_dynamicTypeBodyClamped.ows_semibold
         countryCodeLabel.textAlignment = .right
         countryCodeLabel.accessibilityIdentifier =
@@ -90,7 +90,7 @@ public class FindByPhoneNumberViewController: OWSViewController {
         phoneNumberRowTitleLabel.autoPinHeightToSuperviewMargins()
 
         phoneNumberTextField.font = .ows_dynamicTypeBodyClamped
-        phoneNumberTextField.textColor = Theme.accentBlueColor
+        phoneNumberTextField.textColor = .ows_signalOrange
         phoneNumberTextField.autocorrectionType = .no
         phoneNumberTextField.autocapitalizationType = .none
         phoneNumberTextField.placeholder = NSLocalizedString("REGISTRATION_ENTERNUMBER_DEFAULT_TEXT",

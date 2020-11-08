@@ -9,7 +9,7 @@ class TransferProgressView: UIStackView {
 
     let progressBar: UIProgressView = {
         let progressBar = UIProgressView()
-        progressBar.progressTintColor = .ows_accentBlue
+        progressBar.progressTintColor = .ows_signalOrange
         progressBar.trackTintColor = Theme.isDarkThemeEnabled ? .ows_gray90 : .ows_gray05
         return progressBar
     }()
@@ -61,7 +61,7 @@ class TransferProgressView: UIStackView {
 
         guard !isObservingProgress else { return }
 
-        progressBar.progressTintColor = .ows_accentBlue
+        progressBar.progressTintColor = .ows_signalOrange
         topLabel.text = nil
 
         progress.addObserver(self, forKeyPath: "fractionCompleted", options: .initial, context: nil)

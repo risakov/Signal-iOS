@@ -765,7 +765,7 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
         textView.textContainerInset = UIEdgeInsetsMake(6, tableEdgeInsets, 12, tableEdgeInsets);
 
         textView.linkTextAttributes = @{
-            NSForegroundColorAttributeName : Theme.accentBlueColor,
+            NSForegroundColorAttributeName : Theme.accentOrangeColor,
             NSUnderlineStyleAttributeName : @(NSUnderlineStyleNone),
             NSFontAttributeName : UIFont.ows_dynamicTypeCaption1Font,
         };

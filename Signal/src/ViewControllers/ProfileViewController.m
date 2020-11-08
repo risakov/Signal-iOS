@@ -360,7 +360,7 @@ NSString *const kProfileView_LastPresentedDate = @"kProfileView_LastPresentedDat
                                      initWithString:CommonStrings.learnMore
                                          attributes:@{
                                              NSUnderlineStyleAttributeName : @(NSUnderlineStyleNone),
-                                             NSForegroundColorAttributeName : Theme.accentBlueColor,
+                                             NSForegroundColorAttributeName : Theme.accentOrangeColor,
                                          }]];
     infoLabel.attributedText = text;
     infoLabel.numberOfLines = 0;
@@ -383,7 +383,7 @@ NSString *const kProfileView_LastPresentedDate = @"kProfileView_LastPresentedDat
                                                    @"Button to save the profile view in the profile view.")
                                           font:[OWSFlatButton fontForHeight:kButtonHeight]
                                     titleColor:[UIColor whiteColor]
-                               backgroundColor:UIColor.ows_accentBlueColor
+                               backgroundColor:UIColor.ows_signalOrangeColor
                                         target:self
                                       selector:@selector(saveButtonPressed)];
             SET_SUBVIEW_ACCESSIBILITY_IDENTIFIER(self, saveButton);
@@ -492,11 +492,11 @@ NSString *const kProfileView_LastPresentedDate = @"kProfileView_LastPresentedDat
 
     if (self.hasUnsavedChanges || forceSaveButtonEnabled) {
         self.saveButton.enabled = YES;
-        [self.saveButton setBackgroundColorsWithUpColor:UIColor.ows_accentBlueColor];
+        [self.saveButton setBackgroundColorsWithUpColor:UIColor.ows_signalOrangeColor];
     } else {
         self.saveButton.enabled = NO;
         [self.saveButton
-            setBackgroundColorsWithUpColor:[UIColor.ows_accentBlueColor blendedWithColor:Theme.backgroundColor
+            setBackgroundColorsWithUpColor:[UIColor.ows_signalOrangeColor blendedWithColor:Theme.backgroundColor
                                                                                    alpha:0.5f]];
     }
 }
@@ -694,7 +694,7 @@ NSString *const kProfileView_LastPresentedDate = @"kProfileView_LastPresentedDat
     } else {
         self.usernameLabel.text = NSLocalizedString(@"PROFILE_VIEW_CREATE_USERNAME",
             @"A string indicating that the user can create a username on the profile view.");
-        self.usernameLabel.textColor = Theme.accentBlueColor;
+        self.usernameLabel.textColor = Theme.accentOrangeColor;
     }
 }
 

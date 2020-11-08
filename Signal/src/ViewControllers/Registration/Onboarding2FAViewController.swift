@@ -117,7 +117,7 @@ public class Onboarding2FAViewController: OnboardingBaseViewController {
         pinStack.autoSetDimension(.width, toSize: 227)
         pinStackRow.setContentHuggingVerticalHigh()
 
-        pinTypeToggle.setTitleColor(Theme.accentBlueColor, for: .normal)
+        pinTypeToggle.setTitleColor(.ows_signalOrange, for: .normal)
         pinTypeToggle.titleLabel?.font = .ows_dynamicTypeSubheadlineClamped
         pinTypeToggle.addTarget(self, action: #selector(togglePinType), for: .touchUpInside)
         pinTypeToggle.accessibilityIdentifier = "pinCreation.pinTypeToggle"

@@ -1013,7 +1013,7 @@ typedef enum : NSUInteger {
     bannerView.spacing = 10;
     bannerView.layoutMargins = UIEdgeInsetsMake(14, 16, 14, 16);
     [bannerView setLayoutMarginsRelativeArrangement:YES];
-    [bannerView addBackgroundViewWithBackgroundColor:UIColor.ows_accentBlueColor];
+    [bannerView addBackgroundViewWithBackgroundColor:UIColor.ows_signalOrangeColor];
     bannerView.accessibilityIdentifier = ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"pending_group_request_banner");
 
     return bannerView;

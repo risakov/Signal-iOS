@@ -435,7 +435,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     OWSLayerView *layerView = [OWSLayerView new];
     layerView.layoutMargins = UIEdgeInsetsMake(11 + kTailHeight, 16, 11, 16);
     CAShapeLayer *shapeLayer = [CAShapeLayer new];
-    shapeLayer.fillColor = UIColor.ows_accentBlueColor.CGColor;
+    shapeLayer.fillColor = UIColor.ows_signalOrangeColor.CGColor;
     [layerView.layer addSublayer:shapeLayer];
     layerView.layoutCallback = ^(UIView *view) {
         UIBezierPath *bezierPath = [UIBezierPath new];
@@ -1569,7 +1569,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
                                               ^{ [self markThreadAsRead:thread]; });
                                       }];
 
-                readStateAction.backgroundColor = UIColor.ows_accentBlueColor;
+                readStateAction.backgroundColor = UIColor.ows_signalOrangeColor;
                 readStateAction.accessibilityLabel = CommonStrings.readAction;
                 readStateAction.image = [self actionImageNamed:@"read-solid-24"
                                                      withTitle:readStateAction.accessibilityLabel];
@@ -1591,7 +1591,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
                                                                   });
                                                           }];
 
-                readStateAction.backgroundColor = UIColor.ows_accentBlueColor;
+                readStateAction.backgroundColor = UIColor.ows_signalOrangeColor;
                 readStateAction.accessibilityLabel = CommonStrings.unreadAction;
                 readStateAction.image = [self actionImageNamed:@"unread-solid-24"
                                                      withTitle:readStateAction.accessibilityLabel];

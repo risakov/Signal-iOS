@@ -150,13 +150,13 @@ public class ConversationStyle: NSObject {
     }
 
     @objc
-    public let bubbleColorOutgoingFailed = UIColor.ows_accentBlue
+    public let bubbleColorOutgoingFailed = UIColor.ows_signalOrange
 
     @objc
-    public let bubbleColorOutgoingSending = UIColor.ows_accentBlue
+    public let bubbleColorOutgoingSending = UIColor.ows_signalOrange
 
     @objc
-    public let bubbleColorOutgoingSent = UIColor.ows_accentBlue
+    public let bubbleColorOutgoingSent = UIColor.ows_signalOrange
 
     @objc
     public let dateBreakTextColor = UIColor.ows_gray60
@@ -237,7 +237,7 @@ public class ConversationStyle: NSObject {
     @objc
     public func bubbleReadMoreTextColor(message: TSMessage) -> UIColor {
         if message is TSIncomingMessage {
-            return Theme.isDarkThemeEnabled ? .ows_whiteAlpha90 : .ows_accentBlue
+            return Theme.isDarkThemeEnabled ? .ows_whiteAlpha90 : .ows_signalOrange
         } else if message is TSOutgoingMessage {
             return Theme.isDarkThemeEnabled ? .ows_whiteAlpha90 : .white
         } else {
@@ -258,9 +258,9 @@ public class ConversationStyle: NSObject {
     @objc
     public var quotedReplyBubbleColor: UIColor {
         if Theme.isDarkThemeEnabled {
-            return .ows_signalBlueDark
+            return .ows_signalOrange
         } else {
-            return .ows_accentBlueTint
+            return .ows_signalOrange
         }
     }
 
@@ -268,12 +268,12 @@ public class ConversationStyle: NSObject {
     public func quotedReplyStripeColor(isIncoming: Bool) -> UIColor {
         if Theme.isDarkThemeEnabled {
             if isIncoming {
-                return .ows_accentBlueTint
+                return .ows_signalOrange
             } else {
                 return .ows_black
             }
         } else if isIncoming {
-            return .ows_accentBlue
+            return .ows_signalOrange
         } else {
             return .ows_white
         }

@@ -66,10 +66,10 @@ extern NSString *const ThemeDidChangeNotification;
 
 // For accessibility:
 //
-// * Flat areas (e.g. button backgrounds) should use UIColor.ows_accentBlueColor.
-// * Fine detail (e.g., text, non-filled icons) should use Theme.accentBlueColor.
+// * Flat areas (e.g. button backgrounds) should use UIColor.ows_accentOrangeColor.
+// * Fine detail (e.g., text, non-filled icons) should use Theme.ows_accentOrangeColor.
 //   It is brighter in dark mode, improving legibility.
-@property (class, readonly, nonatomic) UIColor *accentBlueColor;
+@property (class, readonly, nonatomic) UIColor *accentOrangeColor;
 
 @property (class, readonly, nonatomic) UIColor *tableCellBackgroundColor;
 @property (class, readonly, nonatomic) UIColor *tableViewBackgroundColor;

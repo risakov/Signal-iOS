@@ -347,7 +347,7 @@ public class ManageStickersViewController: OWSTableViewController {
         var authorViews = [UIView]()
         if isDefaultStickerPack {
             let builtInPackView = UIImageView()
-            builtInPackView.setTemplateImageName("check-circle-filled-16", tintColor: Theme.accentBlueColor)
+            builtInPackView.setTemplateImageName("check-circle-filled-16", tintColor: .ows_signalOrange)
             builtInPackView.setCompressionResistanceHigh()
             builtInPackView.setContentHuggingHigh()
             authorViews.append(builtInPackView)
@@ -358,7 +358,7 @@ public class ManageStickersViewController: OWSTableViewController {
             let authorLabel = UILabel()
             authorLabel.text = authorName
             authorLabel.font = isDefaultStickerPack ? UIFont.ows_dynamicTypeCaption1.ows_semibold : UIFont.ows_dynamicTypeCaption1
-            authorLabel.textColor = isDefaultStickerPack ? Theme.accentBlueColor : Theme.secondaryTextAndIconColor
+            authorLabel.textColor = isDefaultStickerPack ? .ows_signalOrange : Theme.secondaryTextAndIconColor
             authorLabel.lineBreakMode = .byTruncatingTail
             authorViews.append(authorLabel)
         }

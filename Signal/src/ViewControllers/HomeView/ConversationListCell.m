@@ -138,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.unreadLabel setCompressionResistanceHigh];
 
     self.unreadBadge = [NeverClearView new];
-    self.unreadBadge.backgroundColor = UIColor.ows_accentBlueColor;
+    self.unreadBadge.backgroundColor = UIColor.ows_signalOrangeColor;
     [self.unreadBadge addSubview:self.unreadLabel];
     [self.unreadLabel autoCenterInSuperview];
     [self.unreadBadge setContentHuggingHigh];

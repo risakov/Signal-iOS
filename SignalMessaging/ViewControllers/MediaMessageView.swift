@@ -323,7 +323,7 @@ public class MediaMessageView: UIView, OWSAudioPlayerDelegate {
     private var controlTintColor: UIColor {
         switch mode {
         case .small, .large:
-            return Theme.accentBlueColor
+            return .ows_signalOrange
         case .attachmentApproval:
             return UIColor.white
         }

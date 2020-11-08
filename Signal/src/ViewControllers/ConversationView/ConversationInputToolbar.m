@@ -220,7 +220,7 @@ const CGFloat kMaxIPadTextViewHeight = 142;
     _sendButton = [[UIButton alloc] init];
     self.sendButton.accessibilityLabel = MessageStrings.sendButton;
     [self.sendButton addTarget:self action:@selector(sendButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.sendButton setTemplateImageName:@"send-solid-24" tintColor:UIColor.ows_accentBlueColor];
+    [self.sendButton setTemplateImageName:@"send-solid-24" tintColor:UIColor.ows_signalOrangeColor];
     [self.sendButton autoSetDimensionsToSize:CGSizeMake(50, kMinToolbarItemHeight)];
     SET_SUBVIEW_ACCESSIBILITY_IDENTIFIER(self, _sendButton);
 
@@ -657,7 +657,7 @@ const CGFloat kMaxIPadTextViewHeight = 142;
         ensureViewHiddenState(self.stickerButton, hideStickerButton);
         if (!hideStickerButton) {
             self.stickerButton.imageView.tintColor
-                = (self.desiredKeyboardType == KeyboardType_Sticker ? UIColor.ows_accentBlueColor
+                = (self.desiredKeyboardType == KeyboardType_Sticker ? UIColor.ows_signalOrangeColor
                                                                     : Theme.primaryIconColor);
         }
 
@@ -1036,7 +1036,7 @@ const CGFloat kMaxIPadTextViewHeight = 142;
         [weakSelf.inputToolbarDelegate voiceMemoGestureDidComplete];
     }];
     [sendVoiceMemoButton setTitle:MessageStrings.sendButton forState:UIControlStateNormal];
-    [sendVoiceMemoButton setTitleColor:UIColor.ows_accentBlueColor forState:UIControlStateNormal];
+    [sendVoiceMemoButton setTitleColor:UIColor.ows_signalOrangeColor forState:UIControlStateNormal];
     sendVoiceMemoButton.alpha = 0;
     [self.voiceMemoContentView addSubview:sendVoiceMemoButton];
     [sendVoiceMemoButton autoPinEdgeToSuperviewMargin:ALEdgeRight withInset:10.f];

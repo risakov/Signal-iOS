@@ -247,7 +247,7 @@ public extension OWSTableItem {
         if let iconTintColor = iconTintColor {
             iconView.tintColor = iconTintColor
         } else {
-            iconView.tintColor = Theme.accentBlueColor
+            iconView.tintColor = .ows_signalOrange
         }
         let iconWrapper = UIView.container()
         iconWrapper.addSubview(iconView)

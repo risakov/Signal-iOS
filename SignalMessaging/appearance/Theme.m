@@ -390,12 +390,12 @@ NSString *const ThemeKeyCurrentMode = @"ThemeKeyCurrentMode";
 
 + (UIColor *)cursorColor
 {
-    return Theme.isDarkThemeEnabled ? UIColor.ows_whiteColor : UIColor.ows_accentBlueColor;
+    return Theme.isDarkThemeEnabled ? UIColor.ows_whiteColor : UIColor.ows_signalOrangeColor;
 }
 
-+ (UIColor *)accentBlueColor
++ (UIColor *)accentOrangeColor
 {
-    return Theme.isDarkThemeEnabled ? UIColor.ows_accentBlueDarkColor : UIColor.ows_accentBlueColor;
+    return Theme.isDarkThemeEnabled ? UIColor.ows_signalOrangeColor : UIColor.ows_signalOrangeColor;
 }
 
 + (UIColor *)tableCellBackgroundColor
@@ -425,7 +425,7 @@ NSString *const ThemeKeyCurrentMode = @"ThemeKeyCurrentMode";
 
 + (UIColor *)galleryHighlightColor
 {
-    return [UIColor colorWithRGBHex:0x1f8fe8];
+    return UIColor.ows_signalOrangeColor;
 }
 
 + (UIColor *)conversationButtonBackgroundColor
@@ -435,7 +435,7 @@ NSString *const ThemeKeyCurrentMode = @"ThemeKeyCurrentMode";
 
 + (UIColor *)conversationButtonTextColor
 {
-    return (Theme.isDarkThemeEnabled ? UIColor.ows_gray05Color : UIColor.ows_accentBlueColor);
+    return (Theme.isDarkThemeEnabled ? UIColor.ows_gray05Color : UIColor.ows_signalOrangeColor);
 }
 
 
