@@ -1,27 +1,267 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
+fastlane_require 'yaml'
+fastlane_require 'ostruct'
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+project_settings = OpenStruct.new(YAML.load(open("#{Dir.pwd}/project_settings.yml")))
 
-default_platform(:ios)
+lane :testflight do
+  update_version(isRelease: true)
+  #update_version(isRelease: false, isForce: true) # Start Dev version from X.X.1
+  match(type: "appstore", force: false, readonly: true)
 
-platform :ios do
-  desc "Description of what the lane does"
-  lane :test do
-    run_tests(
-      workspace: "Signal.xcworkspace", 
-      scheme: "Signal", 
-      devices: ["iPhone SE"]
-    )
+  gym(scheme: project_settings[:scheme],
+      configuration: "Debug",
+      export_xcargs: "-allowProvisioningUpdates",
+      xcargs: "OTHERCFLAGS='-DENABLE_CRASH_TRACKING'")
+
+  upload_to_app_store(
+      app_identifier: project_settings[:app_bundle_id],
+      username: project_settings[:apple_user],
+      skip_metadata: true,
+      skip_screenshots: true,
+      force: true,
+      submit_for_review: false)
+
+  upload_dsyms
+
+end
+
+lane :beta_release do
+  beta_upload(group: project_settings[:inner_fabric_beta_team_id], isRelease: true)
+end
+
+lane :beta do
+  beta_upload(group: project_settings[:inner_fabric_beta_team_id], isRelease: false)
+end
+
+lane :beta_inside do
+  beta_upload(group: project_settings[:outer_inside_fabric_beta_team_id], isRelease: false)
+end
+
+lane :beta_clients do
+  beta_upload(group: project_settings[:outer_clients_fabric_beta_team_id], isRelease: false)
+end
+
+lane :collaborators do
+ beta_upload(group: project_settings[:collaborators_fabric_beta_team_id], isRelease: false)
+end
+
+#---------------------------
+# Update project version, save version to VCS.
+# Option: group - Fabric group name to share build.
+#---------------------------
+lane :beta_upload do |options|
+  desc "Uploading to beta group: " + options[:group]
+
+  #sync
+  update_version(isRelease: false)
+
+  version = get_info_plist_value(key: "CFBundleVersion", path: project_settings[:plist_path])
+
+  build(isRelease: options[:isRelease])
+
+  release_notes = changelog_from_git_commits(
+      commits_count: 30,
+      pretty: "- %s",
+      date_format: "short",
+      merge_commit_filtering: "exclude_merges"
+  ).gsub("- Fastlane -", "\n\n- Fastlane -")
+
+
+  team_confidential = OpenStruct.new(YAML.load(open("#{Dir.pwd}/team_confidential.yml")))
+
+  appcenter_upload(
+      api_token: team_confidential[:appcentral_token],
+      owner_name: team_confidential[:appcentral_organization_name],
+      app_name: project_settings[:scheme],
+      ipa: "#{project_settings[:scheme]}.ipa",
+      dsym: "#{project_settings[:scheme]}.app.dSYM.zip",
+      release_notes: release_notes,
+      destinations: options[:group],
+      notify_testers: true,
+      mandatory_update: true)
+end
+
+#---------------------------
+# Build binary file
+# Option: isRelease - build configuration
+#---------------------------
+lane :build do |options|
+
+  gym(scheme: project_settings[:scheme],
+      export_method: "development",
+      configuration: options[:isRelease] ? "Release" : "Debug",
+      include_bitcode: false,
+      export_options: {
+          uploadBitcode: false,
+          uploadSymbols: true,
+          compileBitcode: false
+      },
+      xcargs: "OTHERCFLAGS='-DENABLE_CRASH_TRACKING'")
+end
+
+
+
+lane :test do
+  run_tests(scheme: project_settings[:test_scheme],
+            output_style: "raw")
+end
+
+lane :pods do
+  cocoapods(try_repo_update_on_error: true,
+            use_bundle_exec: false)
+end
+
+#---------------------------
+# Update project version, save version to VCS.
+# Option: isRelease - case true update project version on X.+1.X and commit current branch to 'Master'.
+#                     case false update project version on X.X.+1 and commit current branch.
+# Option: isForce - update version without user ask
+#---------------------------
+lane :update_version do |options|
+
+  #---------------------------
+  # Not always update project version.
+  #---------------------------
+  puts 'Do you want to update version? Y/N'
+  if !options[:isForce] && !UI.confirm("Do you want to update version?")
+    UI.important 'Version bump skipped'
+    next
   end
+
+  isRelease = options[:isRelease] == true
+
+  # ---------------------------
+  # Increment our version numbers. This needs to be done for all of our targets (app, notification center, watch etc.). Here the build and version number will match.
+  # ---------------------------
+  increment_build_number
+  increment_version_number(bump_type: isRelease ? "minor" : "patch")
+  version = get_version_number(target: project_settings[:scheme])
+  #set_info_plist_value(key: "CFBundleVersion", value: `git describe --always`, path: project_settings[:plist_path])
+
+  #---------------------------
+  # Commit version bump
+  #---------------------------
+  if isRelease
+    commit_message = 'Fastlane - Release version: ' + version
+  else
+    commit_message = 'Fastlane - Deploy beta version: ' + version
+  end
+  commit_version_bump(message: commit_message, force: true)
+
+  #---------------------------
+  # Add version tag for git
+  #---------------------------
+  tag_version = get_version_number(target: project_settings[:scheme])
+  add_git_tag(tag: tag_version)
+
+  #---------------------------
+  # Push to Bitbucket
+  #---------------------------
+  if isRelease
+    push_to_git_remote(remote_branch: project_settings[:release_branch])
+  else
+    push_to_git_remote(remote_branch: project_settings[:beta_branch])
+  end
+  push_git_tags
+end
+
+lane :update_git do |options|
+  isRelease = options[:isRelease] == true
+  version = get_version_number(target: project_settings[:scheme])
+  build = get_build_number
+  if isRelease
+    commit_message = 'Fastlane - Release version: ' + version + ' build: ' + build
+  else
+    commit_message = 'Fastlane - Deploy beta version: ' + version + ' build: ' + build
+  end
+
+  commit_version_bump(message: commit_message, force: true)
+  add_git_tag(tag: version)
+  if isRelease
+    push_to_git_remote(remote_branch: project_settings[:release_branch])
+  else
+    push_to_git_remote(remote_branch: project_settings[:beta_branch])
+  end
+  push_git_tags
+end
+
+#---------------------------
+# Increment version, merge to branch 'Master', upload to AppStore and submit for Review.
+#---------------------------
+lane :release do
+  update_version(isRelease: true)
+  #update_version(isRelease: false, isForce: true) # Start Dev version from X.X.1
+  match(type: "appstore", force: true)
+
+  gym(scheme: project_settings[:scheme],
+      configuration: "Release",
+      export_xcargs: "-allowProvisioningUpdates",
+      xcargs: "OTHERCFLAGS='-DENABLE_CRASH_TRACKING'")
+
+  upload_to_app_store(
+      app_identifier: project_settings[:app_bundle_id],
+      username: project_settings[:apple_user],
+      skip_metadata: true,
+      skip_screenshots: true,
+      force: true,
+      submit_for_review: false)
+
+  upload_dsyms
+end
+
+# ---------------------------
+# Upload to Fabric Crashlytics dSYM's from AppStore.
+# ---------------------------
+lane :upload_dsyms do
+  team_confidential = OpenStruct.new(YAML.load(open("#{Dir.pwd}/team_confidential.yml")))
+  appcenter_upload(
+      api_token: team_confidential[:appcentral_token],
+      owner_name: team_confidential[:appcentral_organization_name],
+      app_name: project_settings[:scheme],
+      dsym: "#{project_settings[:scheme]}.app.dSYM.zip",
+      upload_dsym_only: true)
+end
+
+lane :add_devices do |options|
+  register_devices(
+    devices_file: "fastlane/devices.txt",
+    username: project_settings[:apple_user])
+  sync_code_signing(type: "development", force: true)
+end
+
+lane :test_flight do
+  update_version(isRelease: true)
+  #update_version(isRelease: false, isForce: true) # Start Dev version from X.X.1
+  match(type: "appstore", force: true)
+
+  gym(scheme: project_settings[:scheme],
+      configuration: "Debug",
+      export_xcargs: "-allowProvisioningUpdates",
+      xcargs: "OTHERCFLAGS='-DENABLE_CRASH_TRACKING'")
+
+  upload_to_app_store(
+      app_identifier: project_settings[:app_bundle_id],
+      username: project_settings[:apple_user],
+      skip_metadata: true,
+      skip_screenshots: true,
+      force: true,
+      submit_for_review: false)
+
+  upload_dsyms
+end
+
+
+# ---------------------------
+# Update signings info.
+# ---------------------------
+lane :sync do |options|
+  sync_code_signing(type: "development", readonly: true)
+end
+
+lane :sync_force do |options|
+  sync_code_signing(type: "development", readonly: false)
+end
+
+after_all do |lane|
+  notification(message: " Fastlane finished '#{lane}'") # Mac OS X Notification
 end

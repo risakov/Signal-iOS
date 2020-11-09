@@ -1,0 +1,38 @@
+# Project Constants:
+
+app_bundle_id: "ru.WebAnt.Flash"
+
+# Какая схема приложения будет использоваться для создания Beta и Release сборок приложения.
+scheme: "Signal"
+
+# AppleId под которым разрабатывается приложение. Необходимо для управления подписями и сертификатами.
+apple_user: "vdaron@gmail.com"
+
+# Если один AppleID аккаунт состоит в нескольких командах, то необходимо указать id команды в котором идет разработка.
+team_id: "N828Y3N482"
+
+# Для управления сертификатами разработчика. Если приложение использует AppleId аккаунт заказчика,
+# то ветка должна называться согласно названию приложению. Если приложение публикуется под нашим аккаунтом,
+# тогда значение должно быть "vdaron@gmail.com"
+certificates_git_branch: "vdaron@gmail.com"
+
+# В какую ветку будет залита версия после команды fastlane beta
+beta_branch: "beta-test"
+
+# В какую ветку будет залита версия после команды fastlane release
+release_branch: "AppStore"
+
+# В какую команду тестирования будут отправляться сборки для внутреннего тестирования.
+inner_fabric_beta_team_id: "WebAntTest"
+
+# В какую команду тестирования будут отправляться сборки для тестирования заказчиком.
+#outer_inside_fabric_beta_team_id: "Release-inside"
+#outer_clients_fabric_beta_team_id: "Release-clients"
+
+#collaborators_fabric_beta_team_id: "Collaborators"
+
+# Путь к файлу настройки проекта, чтобы туда устанавливать git версию репозитория.
+plist_path: "Tizer/SupportingFiles/Info.plist"
+
+# vdaron@gmail.com
+# N828Y3N482
